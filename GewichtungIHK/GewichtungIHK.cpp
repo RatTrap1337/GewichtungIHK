@@ -57,8 +57,10 @@ void CalculateResult() noexcept {
     const auto ResPB5 = GVF("t2tbpb5") * 0.1f;
     const auto ResTB = (ResPB3 + ResPB4 + ResPB5);
     const auto ResT2 = (ResTA + ResTB);
-    const auto ResTotal = (ResT1 + ResT2);
-    const auto Passed = (ResTotal >= 50.f);
+    const auto ResMep = GVF("mep1") * 0.33f;    
+    const auto ResTotal = (ResT1 + ResT2) * 0.66f;
+    const auto ResOverall = (ResMep + ResTotal);
+    const auto Passed = (ResOverall >= 50.f);
 
     std::cout << "\nSie haben die Prüfung mit " << std::setprecision(2) << ResTotal << "% " << (Passed ? "" : "nicht") << " bestanden.\n" << std::endl;
 }
@@ -84,6 +86,8 @@ int main() {
     Input("Prüfungsbereich 3 (10%): ", DynData["t2tbpb3"], 2);
     Input("Prüfungsbereich 4 (10%): ", DynData["t2tbpb4"], 2);
     Input("Prüfungsbereich 5 (10%): ", DynData["t2tbpb5"], 2);
+    
+    Input("Mündliche Ergänzungsprüfung (2:1): ", DynData["mep1"], 0);
 
     CalculateResult();
 
