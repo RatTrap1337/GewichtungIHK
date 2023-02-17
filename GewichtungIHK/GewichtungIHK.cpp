@@ -35,7 +35,7 @@ void Input(const std::string& Text, Type& Value, int Pad = 1) noexcept {
     std::cin >> Value;
 }
 
-template <typename Type> 
+template <typename Type>
 Type GetValue(const std::string& Value) {
 
     if (typeid(Type).hash_code() == typeid(float).hash_code()) {
@@ -57,9 +57,9 @@ void CalculateResult() noexcept {
     const auto ResPB5 = GVF("t2tbpb5") * 0.1f;
     const auto ResTB = (ResPB3 + ResPB4 + ResPB5);
     const auto ResT2 = (ResTA + ResTB);
-    const auto ResMep = GVF("mep1") * 0.33f;    
-    const auto ResTotal = (ResT1 + ResT2) * 0.66f;
-    const auto ResOverall = (ResMep + ResTotal);
+    const auto ResMep = GVF("mep1");
+    const auto ResTotal = (ResT1 + ResT2) * 2.f;
+    const auto ResOverall = (ResMep + ResTotal) / 3.f;
     const auto Passed = (ResOverall >= 50.f);
 
     std::cout << "\nSie haben die Prüfung mit " << std::setprecision(2) << ResTotal << "% " << (Passed ? "" : "nicht") << " bestanden.\n" << std::endl;
@@ -86,8 +86,10 @@ int main() {
     Input("Prüfungsbereich 3 (10%): ", DynData["t2tbpb3"], 2);
     Input("Prüfungsbereich 4 (10%): ", DynData["t2tbpb4"], 2);
     Input("Prüfungsbereich 5 (10%): ", DynData["t2tbpb5"], 2);
-    
-    Input("Mündliche Ergänzungsprüfung (2:1): ", DynData["mep1"], 0);
+
+    Title("[Optionaler Teil] (2:1)");
+
+    Input("Mündliche Ergänzungsprüfung (2:1): ", DynData["mep1"]);
 
     CalculateResult();
 
