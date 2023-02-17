@@ -58,7 +58,6 @@ void CalculateResult() noexcept {
     const auto ResTB = (ResPB3 + ResPB4 + ResPB5);
     const auto ResT2 = (ResTA + ResTB);
     const auto ResTotal = (ResT1 + ResT2);
-
     const auto Passed = (ResTotal >= 50.f);
 
     std::cout << "\nSie haben die Prüfung mit " << std::setprecision(2) << ResTotal << "% " << (Passed ? "" : "nicht") << " bestanden.\n" << std::endl;
